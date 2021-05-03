@@ -1,27 +1,27 @@
-<? if($this->vendas){ 
-    foreach($this->vendas as $venda){
+<? if($this->produtos){ 
+    foreach($this->produtos as $produto){
 ?>
  <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
-       <div class="img-venda" style="background-image: url(<?= $this->BaseUrl('/imagens/vendas/' . $venda['imagem']); ?>);"></div>
+       <div class="img-venda" style="background-image: url(<?= $this->BaseUrl('/imagens/produtos/' . $produto['imagem']); ?>);"></div>
        <div class="caption">
            <h4 class="pull-right" style="color: red;"><? 
-           if(!empty($venda['valor'])){ 
-            echo 'R$ '. number_format($venda['valor'], 2, ".", ",");
+           if(!empty($produto['valor'])){ 
+            echo 'R$ '. number_format($produto['valor'], 2, ".", ",");
 
            }else{
                echo 'A negociar';
            }
             ?>
            </h4>
-          <h4><a href="#"><?=$venda['nome'];?></a>
+          <h4><a href="#"><?=$produto['nome'];?></a>
           </h4>
            <div style="margin: 0 0 0px">
-                <?=$venda['descricao'];?>
+                <?=$produto['descricao'];?>
            </div>
        </div>
        <div class="alert clearfix">
-        <button type="button" class="btn btn-success pull-right venda" data-id="<?=$venda['id'];?>">Visualizar</button>    
+        <button type="button" class="btn btn-success pull-right venda" data-id="<?=$produto['id'];?>">Visualizar</button>    
        </div>
     </div>
  </div>

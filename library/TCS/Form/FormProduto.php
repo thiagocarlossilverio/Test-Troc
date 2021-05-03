@@ -1,9 +1,9 @@
 <?php
 
-class TCS_Form_FormVenda extends Zend_Form {
+class TCS_Form_FormProduto extends Zend_Form {
 
     public $view = NULL;
-    public $imagem = array('y' => '800', 'x' => '800', 'dir' => 'imagens/vendas/');
+    public $imagem = array('y' => '800', 'x' => '800', 'dir' => 'imagens/produtos/');
 
     public function init() {
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
@@ -12,7 +12,7 @@ class TCS_Form_FormVenda extends Zend_Form {
         $this->view = $viewRenderer->view;
         $this->setAction('');
         $this->setMethod('post');
-        $this->setAttribs(array('id' => 'TCS_Form_FormVenda', 'name' => 'FormUnidadeAdd'));
+        $this->setAttribs(array('id' => 'TCS_Form_FormProduto', 'name' => 'FormUnidadeAdd'));
         $this->setAttrib('enctype', 'multipart/form-data');
         // ID ................................................................
         $elemento = $this->createElement('hidden', 'id', array('id' => 'id'));
@@ -74,12 +74,12 @@ class TCS_Form_FormVenda extends Zend_Form {
         $elemento = $this->createElement('submit', 'Salvar', array('class' => 'btn btn-success'));
         $elemento->removeDecorator('Label');
         $this->addElement($elemento);
-        $this->addDisplayGroup(array('id', 'destaque', 'categoria', 'nome', 'descricao', 'valor', 'imagens', 'ativo', 'Salvar'), 'vendas', array('removeDecorator' => 'Label'));
+        $this->addDisplayGroup(array('id', 'destaque', 'categoria', 'nome', 'descricao', 'valor', 'imagens', 'ativo', 'Salvar'), 'Produto', array('removeDecorator' => 'Label'));
         $this->setDisplayGroupDecorators(array('FormElements', 'Fieldset'));
     }
 
     public function Upload($campo = NULL) {
-        $imagens = new Admin_Model_VendaImagens();
+        $imagens = new Admin_Model_ProdutoImagens();
         if (isset($_POST['delete']) && $_POST['delete']) {
             $imagens->ApagaIMG("imagem = '" . $_POST['imagem'] . "'", $this->imagem['dir'] . $_POST['imagem']);
             die('IMAGEM DELETADA');
@@ -88,7 +88,7 @@ class TCS_Form_FormVenda extends Zend_Form {
         $arquivo = Zend_Controller_Action_HelperBroker::getStaticHelper('Upload')->Upload($campo, $config, TRUE);
 
         if ($arquivo['novoNome']) {
-            $imagens->insert(array('imagem' => $arquivo['novoNome'], 'venda' => $_POST['vinculoRand']));
+            $imagens->insert(array('imagem' => $arquivo['novoNome'], 'produto' => $_POST['vinculoRand']));
             chmod($this->imagem['dir'] . $arquivo['novoNome'], 0777);
             if (strpos($campo->getAttrib('class'), 'multiUpload') == 0) {
                 die($arquivo['novoNome']);

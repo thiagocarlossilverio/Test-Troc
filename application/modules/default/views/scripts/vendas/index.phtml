@@ -5,10 +5,10 @@
     <div class="awesome">
         <? if($this->vendas){ ?>
         <div class="awesome-right">
-            <? foreach($this->vendas as $venda){?>
+            <? foreach($this->vendas as $produto){?>
             <div class="awesome-right-grid">
-                <a href="<?=$this->url(array('controller'=>'vendas', 'action'=>'veiculo', 'param' => $venda['id']),'default', TRUE);?>" class="b-link-stripe b-animate-go">
-                    <img class="one" src="<?= $this->Img('imagens/vendas/'.$venda['imagem'], 220, 160); ?>" alt="<?=$venda['modelo'];?>" title="<?=$venda['modelo'];?>"/>
+                <a href="<?=$this->url(array('controller'=>'vendas', 'action'=>'veiculo', 'param' => $produto['id']),'default', TRUE);?>" class="b-link-stripe b-animate-go">
+                    <img class="one" src="<?= $this->Img('imagens/vendas/'.$produto['imagem'], 220, 160); ?>" alt="<?=$produto['modelo'];?>" title="<?=$produto['modelo'];?>"/>
                     <div class="b-wrapper">
                         <h2 class="b-animate b-from-left    b-delay03 ">
                             <img class="img-responsive" src="assets/images/plus.png" class="zoom" alt=""/>
@@ -16,10 +16,10 @@
                     </div>
                 </a>
                 <div class="wom-right" style="width: 100%;    margin-top: 4px;">
-                    <h4><a href="#"><?=$venda['marca'];?> <?=$venda['modelo'];?> </a></h4>
-                    <p>Ano: <?=$venda['ano'];?></p>
-                    <p>Km Rodados: <?=number_format($venda['km_rodados'], 2, ",", ".");?></p>
-                    <p>Valor: R$ <?=number_format($venda['valor'], 2, ",", ".");?></p>
+                    <h4><a href="#"><?=$produto['marca'];?> <?=$produto['modelo'];?> </a></h4>
+                    <p>Ano: <?=$produto['ano'];?></p>
+                    <p>Km Rodados: <?=number_format($produto['km_rodados'], 2, ",", ".");?></p>
+                    <p>Valor: R$ <?=number_format($produto['valor'], 2, ",", ".");?></p>
                 </div>
 
             </div>

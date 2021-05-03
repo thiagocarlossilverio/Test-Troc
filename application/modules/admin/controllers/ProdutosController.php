@@ -1,6 +1,6 @@
 <?php
 
-class Admin_VendasController extends Zend_Controller_Action {
+class Admin_ProdutosController extends Zend_Controller_Action {
 
     public function init() {
         $this->view->controller = $this->_request->getControllerName();
@@ -8,29 +8,30 @@ class Admin_VendasController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $ModelUnidades = new Admin_Model_Vendas();
-        $dados = $ModelUnidades->Lista();
+       
+        $ModelProdutos = new Admin_Model_Produtos();
+        $dados = $ModelProdutos->Lista();
         $this->view->dados = $dados;
     }
 
     public function adicionarAction() {
-        $form = new TCS_Form_FormVenda();
-        $ModelUnidades = new Admin_Model_Vendas();
+        $form = new TCS_Form_FormProduto();
+        $ModelUnidades = new Admin_Model_Produtos();
         $data = $this->_request->getPost();
         
         if ($this->_request->isPost() && $form->isValid($data)) {
             $ModelUnidades->insert($data);
             //Adiciona a mensagem de sucesso
             $this->_helper->FlashMessenger->addMessage(array('sucesso' => 'Adicionado com sucesso'));
-            $this->redirect('admin/vendas/');
+            $this->redirect('admin/produtos/');
         }
         $this->view->form = $form;
     }
 
     public function editarAction() {
         $id = $this->_request->getParam('id');
-        $form = new TCS_Form_FormVenda();
-        $ModelUnidades = new Admin_Model_Vendas();
+        $form = new TCS_Form_FormProduto();
+        $ModelUnidades = new Admin_Model_Produtos();
         $data = $this->_request->getPost();
         if ($id) {
             $values = $ModelUnidades->GetDados($id);
@@ -50,59 +51,59 @@ class Admin_VendasController extends Zend_Controller_Action {
 
     public function excluirAction() {
         $id = $this->_request->getParam('id');
-        $ModelProdutos = new Admin_Model_Vendas();
-        $ModeImagens = new Admin_Model_VendaImagens();
+        $ModelProdutos = new Admin_Model_Produtos();
+        $ModeImagens = new Admin_Model_ProdutoImagens();
 
         $result = $ModeImagens->BuscarImagens($id);
 
         if ($result) {
             foreach ($result as $evn) {
-                $caminho = 'imagens/vendas/' . $evn['imagem'];
+                $caminho = 'imagens/produtos/' . $evn['imagem'];
                 if (file_exists($caminho)) {
                     unlink($caminho);
                 }
             }
         }
 
-        $ModeImagens->delete("venda = " . $id);
+        $ModeImagens->delete("produto = " . $id);
         $ModelProdutos->delete("id = " . $id);
 
 
         //Adiciona a mensagem de sucesso
         $this->_helper->FlashMessenger->addMessage(array('sucesso' => 'Excluido com sucesso'));
-        $this->_redirect('admin/vendas');
+        $this->_redirect('admin/produtos');
     }
 
     public function ajaxImagensAction() {
         $param = $this->_request->getParam('param');
-        $ModelImagens = new Admin_Model_VendaImagens();
+        $ModelImagens = new Admin_Model_ProdutoImagens();
         $data = $ModelImagens->BuscarImagens($param);
         $this->_helper->json($data);
     }
 
     public function ajaxDeletaImagemAction() {
         $param = $this->_request->getParam('param');
-        $ModelImagens = new Admin_Model_VendaImagens();
+        $ModelImagens = new Admin_Model_ProdutoImagens();
         $data = $ModelImagens->BuscarImagem($param);
-        $caminho = 'imagens/vendas/' . $data['imagem'];
+        $caminho = 'imagens/produtos/' . $data['imagem'];
         $ModelImagens->ApagaIMG("id = '$param'", $caminho);
         $this->_helper->json('1');
     }
 
     public function ajaxSetaCapaAction() {
         $param = $this->_request->getParam('param');
-        $ModelImagens = new Admin_Model_VendaImagens();
+        $ModelImagens = new Admin_Model_ProdutoImagens();
         $data = $ModelImagens->BuscarImagem($param);
 
         // print_r($data);die;
-        $ModelImagens->update(array("capa" => 0), "venda = " . $data['venda']);
+        $ModelImagens->update(array("capa" => 0), "produto = " . $data['produto']);
         $ModelImagens->update(array("capa" => 1), "imagem = '$param'");
         $this->_helper->json('1');
     }
 
     public function ajaxSetaOrderAction() {
         $param = $this->_request->getParam('param');
-        $ModelImagens = new Admin_Model_VendaImagens();
+        $ModelImagens = new Admin_Model_ProdutoImagens();
 
         foreach ($param as $key => $img) {
             if ($key > 0) {

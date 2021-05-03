@@ -3,7 +3,7 @@
 class VendasController extends Zend_Controller_Action {
 
     public function indexAction() {
-        $ModelVendas = new Admin_Model_Vendas();
+        $ModelVendas = new Admin_Model_Produtos();
         $lista = $ModelVendas->Lista(FALSE, FALSE, TRUE);
 
         if ($lista) {
@@ -19,7 +19,7 @@ class VendasController extends Zend_Controller_Action {
 
         $param = (int) $this->_request->getParam('param');
 
-        $ModelVendas = new Admin_Model_Vendas();
+        $ModelVendas = new Admin_Model_Produtos();
         $veiculo = $ModelVendas->GetVenda($param);
         
         $total = ($veiculo['visualizacoes'] + 1);

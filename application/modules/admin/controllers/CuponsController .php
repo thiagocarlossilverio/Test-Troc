@@ -1,20 +1,21 @@
 <?php
 
-class Admin_CategoriasController extends Zend_Controller_Action {
+class Admin_CuponsDescontoController extends Zend_Controller_Action {
 
     public function indexAction() {
-        $categorias = new Admin_Model_Categorias();
-        $result = $categorias->ListarAll();
+        $cupons = new Admin_Model_CuponsDesconto;
+        $result = $cupons->ListCupons();
         $this->view->dados = $result;
     }
 
     public function adicionarAction() {
-        $form = new TCS_Form_FormCategorias();
-        $ModelCategorias = new Admin_Model_Categorias();
+        $form = new TCS_Form_FormCupom();
+        $ModelCupons = new Admin_Model_CuponsDesconto();
 
         $data = $this->_request->getPost();
         if ($this->_request->isPost() && $form->isValid($data)) {
-            $ModelCategorias->insert($data);
+            $ModelCupons->insert($data);
+            
             //Adiciona a mensagem de sucesso
             $this->_helper->FlashMessenger->addMessage(array('sucesso' => 'Adicionado com sucesso'));
             $this->redirect($_SERVER['HTTP_REFERER']);
@@ -24,14 +25,14 @@ class Admin_CategoriasController extends Zend_Controller_Action {
     }
 
     public function editarAction() {
-        $id = (int) $this->_request->getParam('id');
-        $form = new TCS_Form_FormCategorias();
-        $ModelCategorias = new Admin_Model_Categorias();
-        if ($id) {
-            $values = $ModelCategorias->GetDados($id);
+        $param = (int) $this->_request->getParam('id');
+        $form = new TCS_Form_FormCupom();
+        $ModelCupons = new Admin_Model_CuponsDesconto();
+        if ($param) {
+            $values = $ModelCupons->GetCupom($param);
             $form->populate($values);
             if ($this->_request->isPost() && $form->isValid($_POST)) {
-                $ModelCategorias->insert($_POST);
+                $ModelCupons->insert($_POST);
                 $this->_helper->FlashMessenger->addMessage(array('sucesso' => 'Editado com sucesso'));
                 $this->_helper->redirector('index');
             }
@@ -46,23 +47,23 @@ class Admin_CategoriasController extends Zend_Controller_Action {
     public function excluirAction() {
         $id = (int) $this->_request->getParam('id');
 
-        $ModelCategorias = new Admin_Model_Categorias();
-        $ModelVendas = new Admin_Model_Produtos();
+        $ModelCupons = new Admin_Model_CuponsDesconto;
+      /*  $ModelVendas = new Admin_Model_Produtos();
 
         $result = $ModelVendas->VerificaCategoria($id);
 
         if ($result) {
             //Adiciona a mensagem de sucesso
-            $this->_helper->FlashMessenger->addMessage(array('erro' => 'Não foi possível excluir a categoria, ela se encontra em uso!'));
-            $this->_redirect('admin/categorias');
-        }
+            $this->_helper->FlashMessenger->addMessage(array('erro' => 'Não foi possível excluir o cupom!'));
+            $this->_redirect('admin/cupons');
+        }*/
 
 
-        $ModelCategorias->delete("id = " . $id);
+        $ModelCupons->delete("id = " . $id);
 
         //Adiciona a mensagem de sucesso
         $this->_helper->FlashMessenger->addMessage(array('sucesso' => 'Excluido com sucesso'));
-        $this->_redirect('admin/categorias');
+        $this->_redirect('admin/cupons');
     }
 
 }

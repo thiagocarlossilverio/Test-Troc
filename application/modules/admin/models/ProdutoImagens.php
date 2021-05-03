@@ -1,8 +1,8 @@
 <?php
 
-class Admin_Model_VendaImagens extends Zend_Db_Table {
+class Admin_Model_ProdutoImagens extends Zend_Db_Table {
 
-    protected $_name = 'venda_imagens';
+    protected $_name = 'produto_imagens';
     protected $_primary = 'id';
     public $_view;
 
@@ -19,7 +19,7 @@ class Admin_Model_VendaImagens extends Zend_Db_Table {
 
     public function BuscarImagens($vinculo) {
         $sql = $this->select()
-                    ->where("venda = ?", $vinculo)
+                    ->where("produto = ?", $vinculo)
                     ->order("ordem");
         if ($result = $this->fetchAll($sql)) {
             return $result->toArray();
@@ -34,9 +34,9 @@ class Admin_Model_VendaImagens extends Zend_Db_Table {
         }
     }
     
-     public function GetImg($evento) {
+     public function GetImg($produto) {
         $sql = $this->select()
-                    ->where("venda = ?", $evento);
+                    ->where("produto = ?", $produto);
         if ($result = $this->fetchRow($sql)) {
             return $result->imagem;
         }
