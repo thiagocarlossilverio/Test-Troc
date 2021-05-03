@@ -133,14 +133,15 @@ $(function () {
             dayNamesMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
             monthNames: ["Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]});
     });
-    
-     $editor = CKEDITOR.replace('descricao', {
-        toolbar: [
-            {name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']},
-            {name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']},
-            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
-            {name: 'links', items: ['Link', 'Unlink']},
-            {name: 'tools', items: ['Maximize', 'ShowBlocks']},
-        ]
-    });
+    if ($('#descricao').length) {
+        $editor = CKEDITOR.replace('descricao', {
+            toolbar: [
+                {name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']},
+                {name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']},
+                {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
+                {name: 'links', items: ['Link', 'Unlink']},
+                {name: 'tools', items: ['Maximize', 'ShowBlocks']},
+            ]
+        });
+    }
 });
