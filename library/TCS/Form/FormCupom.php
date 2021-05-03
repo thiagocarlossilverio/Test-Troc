@@ -39,6 +39,10 @@ class TCS_Form_FormCupom extends Zend_Form {
         $elemento->setRequired(true);
         $this->addElement($elemento);
         
+          // Validade  .........................................................................
+        $elemento = $this->createElement('text', 'data_validade', array('id' => 'data_validade', 'Label' => 'Validade', 'class' => 'form-control data_time'));
+        $this->addElement($elemento);
+        
        
         $elemento = $this->createElement('radio', 'ativo', array('MultiOptions' => array('1' => 'Sim', '0' => 'Não'), 'Label' => 'Ativo', 'class' => 'label_radio'));
         $elemento->setSeparator('');
@@ -46,9 +50,12 @@ class TCS_Form_FormCupom extends Zend_Form {
         $this->addElement($elemento);
         // Submit  ......................................................................................
         $elemento = $this->createElement('submit', 'Salvar', array('class'=>'btn btn-success'));
-        $elemento->removeDecorator('Label'); //->removeDecorator("DtDdWrapper");
+        $elemento->removeDecorator('Label'); 
         $this->addElement($elemento);
-        $this->addDisplayGroup(array('id', 'titulo', 'tipo_desconto', 'desconto', 'ativo', 'Salvar'), 'desconto', array('removeDecorator' => 'Label'));
+        
+        
+        
+        $this->addDisplayGroup(array('id', 'nome', 'tipo_desconto', 'desconto', 'data_validade','ativo', 'Salvar'), 'group-desconto', array('removeDecorator' => 'Label'));
         $this->setDisplayGroupDecorators(array('FormElements', 'Fieldset'));
     }
    

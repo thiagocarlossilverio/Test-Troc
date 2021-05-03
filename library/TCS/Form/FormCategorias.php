@@ -17,11 +17,11 @@ class TCS_Form_FormCategorias extends Zend_Form {
         $this->addElement($elemento);
 
         $elemento = $this->createElement('text', 'nome', array('id' => 'nome', 'Label' => 'Nome *', 'class' => 'form-control'));
-        $where = array('table' => 'produto_categorias',
+        $where = array('table' => 'categorias_produto',
             'field' => 'nome',
             'messages' => "A categoria '%value%' já existe na base de dados."
         );
-        // CONDIÃ‡ÃƒO USADA AO EDITAR O REGISTRO
+        
         if (isset($_POST['id']) and $_POST['id'] != '')
             $where[] = 'id != ' . $_POST['id'];
         $elemento->addValidator('Db_NoRecordExists', true, $where)

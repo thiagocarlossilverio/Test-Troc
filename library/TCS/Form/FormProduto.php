@@ -48,7 +48,7 @@ class TCS_Form_FormProduto extends Zend_Form {
         $this->addElement($elemento);
 
 
-        $elemento = $this->createElement('text', 'valor', array('id' => 'valor', 'Label' => 'Valor', 'class' => 'form-control'));
+        $elemento = $this->createElement('text', 'valor', array('id' => 'valor', 'Label' => 'Valor', 'class' => 'form-control price'));
         $this->addElement($elemento);
 
 

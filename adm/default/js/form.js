@@ -112,4 +112,35 @@ $(function () {
         });
 
     }));
+
+    $.getScript('/adm/default/js/lib/jquery.mask.min.js', function () {
+        $('#cpf').mask('999.999.999-99');
+        $('.ip_address').mask('099.099.099.099');
+        $('.price').mask('###.##0', {reverse: true, placeholder: "0.000"});
+        $(".data").mask("99/99/9999");
+        $(".hora").mask("99:99");
+        $(".data").datepicker({
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            monthNames: ["Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]});
+
+        $(".data_time").mask("99/99/9999 99:99");
+        $(".data_time").datetimepicker({
+            //numberOfMonths: 3,
+            showButtonPanel: true,
+            minDate: 0,
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            monthNames: ["Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]});
+    });
+    
+     $editor = CKEDITOR.replace('descricao', {
+        toolbar: [
+            {name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']},
+            {name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']},
+            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
+            {name: 'links', items: ['Link', 'Unlink']},
+            {name: 'tools', items: ['Maximize', 'ShowBlocks']},
+        ]
+    });
 });
