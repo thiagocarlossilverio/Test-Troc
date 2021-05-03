@@ -1,0 +1,59 @@
+<? $this->headScript()->appendFile($this->BaseUrl('adm/default/js/ViewIndex.js')); ?>
+<? /* echo $this->headMeta()->appendHttpEquiv('Refresh', '60;URL=http://'.$_SERVER['HTTP_HOST'].'/admin'); */ ?>
+<style> .chat-img>img {margin-left: 0px;}img{display: block;max-width: 75%;height: auto;}</style>
+<div id="mensagem" title="Notificação"></div>
+<? 
+    if (!empty($this->dados->imagem) && file_exists('imagens/usuarios/' . $this->dados->imagem)) { 
+        $img = $this->BaseUrl('imagens/usuarios/' . $this->dados->imagem);
+    }else{
+        $img = $this->BaseUrl('adm/default/img/avatar.png');
+    }
+    $array = explode(',', $this->dados->ip);
+    if($array){
+        $this->dados->ip = $array[0];
+    }
+?>
+
+<? if(!$this->acesso){ ?>
+    <div id="NotificaDados" data-nome="<?=$this->dados->nome;?>"  data-ip="<?=$this->dados->ip;?>" data-img="<?=$img;?>" data-acesso="<?= $this->ConvercaoDate('-', $this->dados->ultimo_acesso, 4); ?>"></div>
+<? } ?>
+<div class="row">
+   <div class="col-md-12">
+      <!-- Form Elements -->
+      <div class="panel panel-primary">
+         <div class="panel-heading">
+            <h3 class="panel-title">Painel Administrativo</h3>
+         </div>
+         <div id="page-inner">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="alert alert-info">
+                      Último Acesso: <?= $this->ConvercaoDate('-', $this->dados->ultimo_acesso, 4); ?> - no IP: <a href="http://www.localizaip.com.br/localizar-ip.php?ip=<?= $this->dados->ip; ?>" target="_blank"><?= $this->dados->ip; ?></a>
+                  </div>
+               </div>
+            </div>
+            <BR><BR>
+            
+            <div class="row">
+               <div class="col-md-12">
+                  <!-- Form Elements -->
+                  <div class="panel panel-primary">
+                     <div class="panel-heading">
+                        <h3 class="panel-title">Total de Acessos</h3>
+                     </div>
+                                                          
+                     <div class="panel-body">
+                        <div class="row">
+                           <div class="col-md-12 despesa">
+                              <img  class="img-responsive" src="<?= $this->grafico; ?>"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Form Elements -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

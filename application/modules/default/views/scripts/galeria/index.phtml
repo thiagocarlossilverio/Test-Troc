@@ -1,0 +1,36 @@
+<?  if (!isset($this->server) && strtolower($this->server) !== "xmlhttprequest") { ?>
+<div class="port">
+<? } ?>    
+    <div class="portfolio-grids"> 
+        <div class="col-md-2"></div>      
+        <div class="col-md-4">
+            <div class="view view-ninth galeria" data-param="granel" style="width: 250px;height: 217px; margin: 8px 35px 0;">
+                <img class="img-thumbnail" style="width: 243px;height: 218px;" src="<?= $this->BaseUrl('imagens/granel.jpg'); ?>"/>
+                <div class="mask mask-1"></div>
+                <div class="mask mask-2"></div>
+                <div class="content">
+                    <h2>Operação Granel</h2>
+                    <p>Clique para visualizar</p>
+                    <a href="#" class="info">Ver Mais...</a>
+                </div>
+            </div>                       
+            <h3>Operação Granel</h3>
+        </div>
+        <div class="col-md-4 text-right">
+            <div class="view view-ninth galeria" data-param="suinos" style="width: 250px;height: 217px; margin: 8px 35px 0;">
+                <img class="img-thumbnail" style="width: 243px;height: 218px;" src="<?= $this->BaseUrl('imagens/porcadeiro.jpg'); ?>"/>
+                <div class="mask mask-1"></div>
+                <div class="mask mask-2"></div>
+                <div class="content">
+                    <h2>Operação Suínos</h2>
+                    <p>Clique para visualizar</p>
+                    <a href="#" class="info">Ver Mais...</a>
+                </div>
+            </div>
+            <h3> Operação Suínos</h3>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+ <?  if (!isset($this->server) && strtolower($this->server) !== "xmlhttprequest") { ?>   
+</div>
+<? } ?> 

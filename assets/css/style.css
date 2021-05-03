@@ -1,0 +1,83 @@
+.img-venda {
+    width: 260px;
+    height: 126px;
+    background-size: cover;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #FFF!important;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d!important;
+}
+.navbar-inverse {
+    background-color: #0575b9!important;
+    border-color: #0382d0;
+    min-height: 60px;
+}
+.footer {
+    background: #222222;
+    padding: 20px 0;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 1;
+}
+.footer .title h3 {
+    color: #FFFFFF;
+    font-size: 22px !important;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-transform: inherit;
+}
+.contact_details li span {
+    padding-left: 2px;
+}
+.footer, .copyrights, .footer-menu li a {
+    color: #cccccc;
+}
+
+.copyrights {
+    background: #292929;
+    padding: 8px 0 20px;
+    position: relative;
+    display: block;
+}
+.contact_details li {
+    margin-bottom: 18px;
+    list-style: none;
+}
+p.lead.lista-categoria {
+    margin-top: 37px;
+}
+.vendas{
+       padding: 83px 0px;
+    min-height: 450px;
+}
+.minhas-propostas {
+    margin: 40px 0px;
+}
+
+.navbar-nav {
+   margin-top: 11px;
+}
+.nav>li>a {
+    padding: 19px 8px!important;
+}
+.ImgGalery {
+    margin-bottom: 2px;
+    border: 2px solid #dcddde;
+    width: 100px;
+    height: 90px;
+}
+.ImgGalery:hover{
+    margin-bottom: 2px;
+    border: 2px solid #337ab7;
+    width: 100px;
+    height: 90px;
+}
+img#loader {
+    margin: 0px 335px;
+}
+

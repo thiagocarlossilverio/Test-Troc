@@ -1,0 +1,1 @@
+$(function () {    $(".fancybox").fancybox();});

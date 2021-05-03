@@ -1,0 +1,85 @@
+<?php 
+header('Access-Control-Allow-Origin: *');
+$this->headScript()->appendFile($this->BaseUrl('adm/default/js/localizar.js'));?>
+<!-- Advanced Tables -->
+<div class="panel panel-default">
+   <div class="panel-heading">
+      Acessos
+   </div>
+   <div class="panel-heading">
+        <div class="btn-group" role="group" aria-label="...">
+            <a href="<?=$this->Url(array('controller' => 'acessos', 'action' => 'index', 'mes'=> ($this->mes - 1)), null, FALSE);?>" class="btn btn-default"><< Mês Anterior</a>
+            <a href="<?=$this->Url(array('controller' => 'acessos', 'action' => 'index',  'mes'=> ''), null, FALSE);?>" class="btn btn-default"><< Mês Atual >></a>
+            <? if($this->mes){?>
+            <a href="<?=$this->Url(array('controller' => 'acessos', 'action' => 'index', 'mes'=> ($this->mes + 1)), null, FALSE);?>" class="btn btn-default">Próximo Mês >></a>
+            <? } ?>
+        </div>
+        <span class="label label-warning right"><?=$this->MesExtenso($this->data['mes']);?> de <?=$this->data['ano'];?></span>   
+    </div>
+   <div class="panel-body">
+      <div class="table-responsive">
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                   <th>#</th>
+                  <th>S.O</th>
+                  <th>Navegador</th>
+                  <th>IP</th>
+                  <th>Data</th>
+                  <th>Localizar</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+                  if ($this->acessos) {
+                      foreach ($this->acessos as $row) {
+                          ?>
+               <tr>
+                   <td><?= $row['id']; ?></td>
+                  <td><?= $row['sistema_operacional']; ?></td>
+                  <td><?= $row['navegador']; ?></td>
+                  <? $array = explode(',', $row['ip']);
+                    if($array){
+                        $row['ip'] = $array[0];
+                    }else{
+                        $row['ip'] = $row['ip'];
+                    }
+                  ?>
+                  <td><?= $row['ip']; ?></td>
+                  <td><?= $this->ConvercaoDate('-', $row['data_acesso'], 4); ?></td>
+                  <td>
+                     <button type="button" class="btn btn-success mapear" data-toggle="modal" data-target="#myModal" latitude="<?= $row['latitude']; ?>" longitude="<?= $row['longitude']; ?>" ip="<?= $row['ip']; ?>" os="<?= $row['sistema_operacional']; ?>" style="  margin-bottom: 12px!important;">Mapear</button>
+                  </td>
+               
+               </tr>
+               <? }
+                  } else {
+                      ?>
+               <tr>Não ha registros de acessos</tr>
+               <? } ?>    
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+<!--End Advanced Tables -->
+<!-- Modal -->
+<div class="modal fade" id="mapa" tabindex="-1" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">MAPA</h4>
+         </div>
+         <div class="modal-body mp">
+            <span>CARREGANDO...</span
+            <div id="map"></div>
+            <div class="progress">
+               <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                  <span class="sr-only">45% Complete</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- /.modal -->

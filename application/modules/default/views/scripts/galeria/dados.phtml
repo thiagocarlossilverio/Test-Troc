@@ -1,0 +1,33 @@
+﻿<?php
+$this->headLink()->appendStylesheet($this->BaseUrl('assets/css/swipebox.css'));
+$this->headScript()->appendFile($this->BaseUrl('assets/js/jquery.swipebox.min.js'));
+$this->headScript()->appendFile($this->BaseUrl('assets/js/dados.js'));
+?>
+<div class="port" style="min-height: 400px;">
+    <div class="button-group filter-button-group">
+        <button id="voltar">Voltar</button>
+    </div>
+    <h3><?= ucfirst($this->dados['nome']); ?></h3>
+    <p class="para"><?= $this->dados['descricao']; ?></span></p>
+    <div class="portfolio-grids">
+        <? if ($this->dados['imagens']) { ?>
+            <? foreach ($this->dados['imagens'] as $key => $foto) { ?>
+                <a href="<?= $this->BaseUrl('imagens/galerias/' . $foto['imagem']); ?>" class="b-link-stripe b-animate-go swipebox" >
+                    <div class="view view-ninth">
+                       <!-- <img src="<? /* $this->Img('imagens/galerias/'.$foto['imagem'], 300, 180); */ ?>">-->
+                        <img src="<?= $this->BaseUrl('imagens/galerias/' . $foto['imagem']); ?>">
+                        <div class="mask mask-1"></div>
+                        <div class="mask mask-2"></div>
+                        <div class="content">
+                            <h2><?= $this->dados['nome'] . ' - ' . $key; ?></h2>
+
+                        </div>
+                    </div>
+                </a>
+            <? } ?>
+        <? } else { ?>
+            <p class="para">Não há registro de galeria na base de dados!</p>
+        <? } ?>
+    </div>
+    <div class="clearfix"> </div>
+</div>

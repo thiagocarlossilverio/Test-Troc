@@ -1,0 +1,134 @@
+<?
+$this->headScript()->appendFile($this->BaseUrl('assets/js/cadastro.js'));
+?>
+<div class="container">
+   <h1 class="well">Faça seu Cadastro</h1>
+   <?=$this->FlashMessenger(); ?>
+   <div class="col-lg-12 well">
+      <div class="row">
+          <form id="cadastro" enctype="multipart/form-data" method="POST" action="<?php echo $this->url(array('module' => 'default', 'controller' => 'cadastro', 'action'=>'index'), null, true); ?>">
+            <div class="col-sm-12">
+               <div class="row">
+                <div class="col-sm-12 form-group">
+                     <label>Tipo de Pessoa?</label>
+                  <div class="input-group">
+                   <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default tipo active" tipo="1">
+                          <input type="radio" name="tipo_pessoa" id="tipo1" value="1" autocomplete="off"> Fisíca
+                      </label>
+                      <label class="btn btn-default tipo" tipo="2">
+                          <input type="radio" name="tipo_pessoa" id="tipo2" value="2" autocomplete="off"> Jurídica
+                      </label>
+                    </div> 
+                   </div>            
+                   </div>
+                  <div class="col-sm-6 form-group">
+                      <label id="label-nome1">Nome</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="nome1" id="noem1" placeholder="Insira seu Nome" required="required" class="form-control"  type="text">
+                     </div>
+                  </div>
+                  <div class="col-sm-6 form-group">
+                     <label id="label-nome2">Sobrenome</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="nome2" id="nome2" placeholder="Insira seu Sobrenome" required="required" class="form-control"  type="text">
+                     </div>
+                  </div>
+                   
+                   <div class="col-sm-6 form-group">
+                     <label id="label-doc1">CPF</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                        <input name="doc1" id="doc1" placeholder="Insira seu CPF" class="form-control cpfOuCnpj" required="required" type="text">
+                     </div>
+                  </div>
+                  <div class="col-sm-6 form-group">
+                     <label id="label-doc2">RG</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                        <input name="doc2" id="doc2" placeholder="Insira seu RG" class="form-control" required="required" type="text">
+                     </div>
+                  </div>
+               </div>
+              
+               <div class="row">
+                   
+                   <div class="col-sm-4 form-group">
+                     <label>CEP</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-certificate"></i></span>
+                        <input name="cep" id="cep" placeholder="Insira seu CEP" class="form-control"  type="text">
+                     </div>
+                  </div>
+                   
+                  <div class="col-sm-8 form-group">
+                     <label>Endereço</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="endereco" required="required" placeholder="Insira seu Endereço" class="form-control"  type="text">
+                     </div>
+                  </div>
+                  <div class="col-sm-4 form-group">
+                     <label>Bairro</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>
+                        <input name="bairro" required="required" placeholder="Insira seu Bairro" class="form-control"  type="text">
+                     </div>
+                  </div>
+                   
+                  <div class="col-sm-4 form-group">
+                     <label>Cidade</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="cidade" required="required" placeholder="Insira sua cidade" class="form-control"  type="text">
+                     </div>
+                  </div>
+                  <div class="col-sm-4 form-group">
+                     <label>Estado</label>
+                     <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>
+                        <input name="estado" required="required" placeholder="Insira seu estado" class="form-control"  type="text">
+                     </div>
+                  </div>
+                  
+               </div>
+              
+               <div class="col-sm-6 form-group">
+                  <label>Telefone</label>
+                  <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                        <input name="telefone" id="telefone" placeholder="Insira seu telefone" class="form-control" required="required" type="text">
+                  </div>
+               </div>
+               <div class="col-sm-6 form-group">
+                  <label>Email</label>
+                  <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="Insira seu email" required="required" class="form-control"  type="email">
+                  </div>
+               </div>
+                
+                <div class="col-sm-6 form-group">
+                  <label>Senha</label>
+                  <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
+                        <input name="senha"  id="senha"  required="required" placeholder="Insira sua Senha" class="form-control"  type="password">
+                  </div>
+               </div>
+                
+                
+                <div class="col-sm-6 form-group">
+                  <label>Confirmação de Senha</label>
+                  <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
+                        <input name="confirma_senha" id="confirma_senha" required="required" placeholder="Insira sua Senha" class="form-control"  type="password">
+                  </div>
+               </div>
+                <button type="submit" class="btn btn-lg btn-success">Salvar</button>					
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

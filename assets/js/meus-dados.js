@@ -1,0 +1,1 @@
+$(function () {    $("input").prop('disabled', true);    $('.editar').click(function () {        $("input").prop('disabled', false);        $(".salvar").prop('disabled', false);    });});

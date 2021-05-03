@@ -1,0 +1,44 @@
+#zend_form  { background-color: #F00 !important}
+#conteudo 	{ min-height: 300px;}
+.envolve{
+	width:100px;
+	height:120px;
+	padding:5px;
+	background:#f1f1f1;
+	border:1px solid #ccc;
+	float:left;
+	margin:6px;
+	margin-bottom:5px;
+}
+.dashed{
+	width:100px;
+	height:120px;
+	padding:5px;
+	background:#fff;
+	border:1px dashed red;
+	float:left;
+	margin:6px;
+	margin-bottom:5px;
+}
+.envolve div{
+	width:98px;
+	height:98px;
+	border:1px solid #ccc;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#fff;
+	float:left;
+}
+.envolve span{
+	float:right;
+	color:#F00;
+	font-size:18px;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+
+#imagensUploader{
+width: 120px;
+height: 40px !important;
+}
