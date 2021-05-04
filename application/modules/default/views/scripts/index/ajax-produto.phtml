@@ -2,7 +2,7 @@
     <div class="col-xs-10 col-md-6">
       <? foreach ($this->dados['imagens'] as $key=>$row){?>
         <a class="fancybox" rel="group" href="<?=$this->BaseUrl('imagens/produtos/'.$row['imagem']); ?>">
-            <img class="ImgGalery" src="<?= $this->Img('imagens/produtos/'.$row['imagem'], 200, 200); ?>" alt="<?=$this->dados['nome']. ' - '.($key+1);?>">
+            <img class="ImgGalery" src="<?=$this->BaseUrl('imagens/produtos/'.$row['imagem']); ?>" alt="<?=$this->dados['nome']. ' - '.($key+1);?>">
         </a>
       <? }?>
     </div>
@@ -25,7 +25,10 @@
         <? if(!empty($this->dados['descricao'])){?>
             <a href="#" class="list-group-item">Descrição:<?=$this->dados['descricao'];?></a>
         <? }?>
-       
+            <a href="#" class="list-group-item">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade_produto" value="1" name="quantidade" min="1" max="10">
+            </a>
         </div> 
     </div>    
 </div>

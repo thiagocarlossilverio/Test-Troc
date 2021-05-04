@@ -19,10 +19,16 @@ class TCS_Form_FormCupom extends Zend_Form {
         $elemento->removeDecorator('HtmlTag')->removeDecorator('Label');
         $this->addElement($elemento);
         
-        // titulo  .........................................................................
+          // Nome  .........................................................................
         $elemento = $this->createElement('text', 'nome', array('id' => 'nome', 'Label' => 'Nome', 'class' => 'form-control'));
         $elemento->setRequired(true);
         $this->addElement($elemento);
+        
+        // Codigo cupom  .........................................................................
+        $elemento = $this->createElement('text', 'codigo_cupom', array('id' => 'codigo_cupom', 'Label' => 'Codigo Cupom', 'class' => 'form-control'));
+        $elemento->setRequired(true);
+        $this->addElement($elemento);
+               
         
        // Tipo de Desconto .......................................................................
         $categoria = new Admin_Model_Menus();
@@ -37,6 +43,16 @@ class TCS_Form_FormCupom extends Zend_Form {
         // Desconto  .........................................................................
         $elemento = $this->createElement('text', 'desconto', array('id' => 'desconto', 'Label' => 'Desconto', 'class' => 'form-control'));
         $elemento->setRequired(true);
+        $this->addElement($elemento);
+        
+        // categorias .......................................................................
+        $categoria = new Admin_Model_Categorias();
+        $elemento = $this->createElement('select', 'categoria', array('label' => 'Por Categoria', 'id' => 'categoria', 'class' => 'form-control'));
+        $elemento->addMultioptions(array('' => '-- Selecione uma categoria -- '));
+        foreach ($categoria->ListCategory() as $row)
+            if ($row['id'])
+                $elemento->addMultioptions(array($row['id'] => $row['nome']));
+
         $this->addElement($elemento);
         
           // Validade  .........................................................................
@@ -55,7 +71,7 @@ class TCS_Form_FormCupom extends Zend_Form {
         
         
         
-        $this->addDisplayGroup(array('id', 'nome', 'tipo_desconto', 'desconto', 'data_validade','ativo', 'Salvar'), 'group-desconto', array('removeDecorator' => 'Label'));
+        $this->addDisplayGroup(array('id', 'nome', 'codigo_cupom', 'tipo_desconto', 'desconto', 'categoria', 'data_validade','ativo', 'Salvar'), 'group-desconto', array('removeDecorator' => 'Label'));
         $this->setDisplayGroupDecorators(array('FormElements', 'Fieldset'));
     }
    

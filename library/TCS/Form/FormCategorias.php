@@ -21,7 +21,7 @@ class TCS_Form_FormCategorias extends Zend_Form {
             'field' => 'nome',
             'messages' => "A categoria '%value%' já existe na base de dados."
         );
-        
+        // CONDIÃ‡ÃƒO USADA AO EDITAR O REGISTRO
         if (isset($_POST['id']) and $_POST['id'] != '')
             $where[] = 'id != ' . $_POST['id'];
         $elemento->addValidator('Db_NoRecordExists', true, $where)

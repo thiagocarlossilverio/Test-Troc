@@ -6,14 +6,18 @@
 .navbar-inverse .navbar-nav>li>a {
     color: #FFF!important;
 }
+.list-carrinho{padding: 100px 0px;}
 
 .navbar-inverse .navbar-nav>li>a:hover {
     color: #9d9d9d!important;
 }
 .navbar-inverse {
-    background-color: #0575b9!important;
-    border-color: #0382d0;
+    background-color: #DA5272!important;
+    border-color: #DA5272;
     min-height: 60px;
+}
+.row .produtos{
+    margin-top: 85px;
 }
 .footer {
     background: #222222;
@@ -52,7 +56,7 @@ p.lead.lista-categoria {
     margin-top: 37px;
 }
 .vendas{
-       padding: 83px 0px;
+    padding: 83px 0px;
     min-height: 450px;
 }
 .minhas-propostas {
@@ -60,7 +64,7 @@ p.lead.lista-categoria {
 }
 
 .navbar-nav {
-   margin-top: 11px;
+    margin-top: 11px;
 }
 .nav>li>a {
     padding: 19px 8px!important;

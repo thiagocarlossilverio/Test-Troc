@@ -54,10 +54,10 @@ class Zend_Controller_Action_Helper_Upload extends Zend_Controller_Action_Helper
                 $img->image_x = $config['X']; // Defino um Array no TOPO da Classe, passando X Maximo da Imagem
             }
 
-            //if($marca_agua){
-                $img->image_watermark = '/home/storage/5/d4/02/schoeler1/public_html/vendas/assets/images/logo1.png';
-                $img->image_watermark_position = 'bottom, right';
-            //}
+            if($marca_agua){
+               // $img->image_watermark = '/caminho imagem';
+               // $img->image_watermark_position = 'bottom, right';
+            }
 
             $img->no_script = false;
             $img->file_new_name_body = $info['novoNome']; // Renomeio a Imagem com o nome Gerado ou Manipulado.

@@ -1,0 +1,57 @@
+<?
+//$this->headScript()->appendFile($this->BaseUrl('assets/js/Addcarrinho.js'));
+?>
+<div class="row list-carrinho">
+
+    <div class="col-md-8">
+        <div class="row">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col">Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <? foreach($this->carrinho as $produto){ ?>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><?=$produto['nome'];?></td>
+                        <td><?=$this->Real($produto['valor']);?></td>
+                        <td><?=$produto['quantidade'];?></td>
+                        <td><?=$this->Real(($produto['quantidade']*$produto['valor']));?></td>
+                        <td>
+                            <a href="<?=$this->url(array('controller'=>'carrinho', 'action'=>'remover', 'id' => $produto['id']), 'default', TRUE);?>" title="Remover do carrinho"><i class="glyphicon glyphicon-remove"></i></a>	
+                        </td>
+                    </tr>
+                    <? } ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row">
+            <ul class="list-group">
+                <li class="list-group-item">Total: </li>
+                <li class="list-group-item">
+                   <div class="form-group mx-sm-3 mb-2">
+                       <input type="text" class="form-control" id="cupom_desconto" placeholder="Insira seu Cupom desconto">
+                   </div>
+                   <button type="submit" class="btn btn-primary mb-2">Aplicar Desconto</button>
+                </li>
+                
+                <li class="list-group-item"></li>
+                <li class="list-group-item">
+                    <button type="submit" class="btn btn-success mb-2">Finalizar</button>
+                </li>
+            </ul>
+        </div>
+   </div>
+       
+</div>
