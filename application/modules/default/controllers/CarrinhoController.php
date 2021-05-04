@@ -99,23 +99,24 @@ class CarrinhoController extends Zend_Controller_Action {
 
                 if (!empty($dados_Cupom['categoria'])) {
 
-                    if ($produto['categoria'] == $dados_Cupom['categoria']) {
-                        $valor_subtotal = ($quantidade * $valor);
-                        
-                        /* Se desconto for do tipo Percentual */
-                        if ($dados_Cupom['tipo_desconto'] == '1' && $produto['categoria'] == $dados_Cupom['categoria']) {
-                            $porcentagem = $this->view->LimpaNumero($dados_Cupom['desconto']);
-                            $valor = $valor_subtotal - ($valor_subtotal * $porcentagem / 100);
+                    if ($dados_Cupom['categoria'] == $produto['categoria']) {
 
-                            
+                        $valor_subtotal = ($quantidade * $valor);
+
+                        /* Se desconto for do tipo Percentual */
+                        if ($dados_Cupom['tipo_desconto'] == '1') {
+                            $porcentagem = $this->view->LimpaNumero($dados_Cupom['desconto']);
+                            $valor = ($valor_subtotal - (($valor_subtotal * $porcentagem) / 100));
                         }
-                        
+
                         /* Se  desconto for valor fixo */
-                        if ($dados_Cupom['tipo_desconto'] == '2' && $produto['categoria'] == $dados_Cupom['categoria']) {
+                        if ($dados_Cupom['tipo_desconto'] == '2') {
                             $valor_subtotal = ($quantidade * $valor);
                             $valor_desconto = $this->view->LimpaNumero($dados_Cupom['desconto']);
                             $valor = ($valor_subtotal - $valor_desconto);
                         }
+                    } else {
+                        return false;
                     }
                 }
 
@@ -123,9 +124,7 @@ class CarrinhoController extends Zend_Controller_Action {
             }
         }
 
-
-        echo 'R$ ' . $this->view->Real($total);
-        die;
+        die($this->view->Real($total));
     }
 
 }
