@@ -76,7 +76,7 @@ class CarrinhoController extends Zend_Controller_Action {
         }
     }
 
-    public function aplicarDescontoCarrinhoAction() {
+    public function ajaxAplicarDescontoAction() {
         $this->_helper->layout->disableLayout();
 
         // Busca o carrinho da sessão
@@ -85,11 +85,11 @@ class CarrinhoController extends Zend_Controller_Action {
         $cupom_desconto = $this->_request->getParam('cupom_desconto');
 
         $ModelCupom = new Admin_Model_Cupons();
-        
-        $dados_Cupom = $ModelCupom->GetCupom($cupom_desconto);
-        
+
+        $dados_Cupom = $ModelCupom->GetDesconto($cupom_desconto);
+
         $total = false;
-                
+
         if (count($session->carrinho['produtos']) > 0) {
             $carrinho = $session->carrinho['produtos'];
 
@@ -98,33 +98,34 @@ class CarrinhoController extends Zend_Controller_Action {
                 $quantidade = $this->view->LimpaNumero($produto['quantidade']);
 
                 if (!empty($dados_Cupom['categoria'])) {
-                 
-                    if ($produto['categoria'] == $dados_Cupom['categoria']) {
 
+                    if ($produto['categoria'] == $dados_Cupom['categoria']) {
+                        $valor_subtotal = ($quantidade * $valor);
+                        
                         /* Se desconto for do tipo Percentual */
-                        if ($dados_Cupom['tipo_desconto'] == '1') {
+                        if ($dados_Cupom['tipo_desconto'] == '1' && $produto['categoria'] == $dados_Cupom['categoria']) {
                             $porcentagem = $this->view->LimpaNumero($dados_Cupom['desconto']);
-                            $valor = $valor - ($valor * $porcentagem / 100);
-                           
-                            /* Se  nao e valor fixo */
-                        } else {
+                            $valor = $valor_subtotal - ($valor_subtotal * $porcentagem / 100);
+
+                            
+                        }
+                        
+                        /* Se  desconto for valor fixo */
+                        if ($dados_Cupom['tipo_desconto'] == '2' && $produto['categoria'] == $dados_Cupom['categoria']) {
+                            $valor_subtotal = ($quantidade * $valor);
                             $valor_desconto = $this->view->LimpaNumero($dados_Cupom['desconto']);
-                            $valor = ($valor - $valor_desconto);
+                            $valor = ($valor_subtotal - $valor_desconto);
                         }
                     }
-                
-                    
                 }
 
-                $total += ($quantidade * $valor);
+                $total += $valor;
             }
-        
-            
-            
         }
 
 
-        die($total);
+        echo 'R$ ' . $this->view->Real($total);
+        die;
     }
 
 }

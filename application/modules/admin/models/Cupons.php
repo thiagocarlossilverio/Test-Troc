@@ -57,7 +57,18 @@ class Admin_Model_Cupons extends Zend_Db_Table {
             return $result->toArray();
         }
     }
-
+    
+     public function GetDesconto($cupom) {
+        $sql = $this->select()
+                    ->where("codigo_cupom = ?", $cupom);
+        if ($result = $this->fetchRow($sql)) {
+            if (!empty($result['data_validade'])) {
+                $result['data_validade'] = $this->view->ConvercaoDate('-', $result['data_validade'], 7);
+            }
+            return $result->toArray();
+        }
+    }
+    
     public function update(array $data, $where) {
         $info = $this->info();
         $data_insert = array_intersect_key($data, $info['metadata']);
