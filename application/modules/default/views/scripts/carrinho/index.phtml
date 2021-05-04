@@ -22,7 +22,7 @@
                      foreach($this->carrinho as $produto){
                          $valor = $this->LimpaNumero($produto['valor']);
                          $quantidade = $this->LimpaNumero($produto['quantidade']);
-                          $total += ($quantidade * $valor);
+                         $total += ($quantidade * $valor);
                          ?>
                     <tr>
                         <th scope="row">1</th>
@@ -56,7 +56,7 @@
                 
                 <li class="list-group-item"></li>
                 <li class="list-group-item">
-                    <button type="button" class="btn btn-success mb-2">Finalizar</button>
+                    <button type="button" class="btn btn-success mb-2 finaliza-carrinho">Finalizar</button>
                 </li>
             </ul>
         </div>

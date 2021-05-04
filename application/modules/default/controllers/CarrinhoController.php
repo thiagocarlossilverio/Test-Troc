@@ -50,13 +50,6 @@ class CarrinhoController extends Zend_Controller_Action {
         }
     }
 
-    public function listaAction() {
-        // Cria a sessão do cliente
-        $carrinho = new Zend_Session_Namespace("carrinho");
-
-        Zend_Debug::dump($carrinho->dados_produto->nome);
-        die;
-    }
 
     public function removerAction() {
         //N�o renderiza a phtml
