@@ -89,7 +89,7 @@ class CarrinhoController extends Zend_Controller_Action {
         $dados_Cupom = $ModelCupom->GetCupom($cupom_desconto);
         
         $total = false;
-        
+                
         if (count($session->carrinho['produtos']) > 0) {
             $carrinho = $session->carrinho['produtos'];
 
@@ -98,6 +98,7 @@ class CarrinhoController extends Zend_Controller_Action {
                 $quantidade = $this->view->LimpaNumero($produto['quantidade']);
 
                 if (!empty($dados_Cupom['categoria'])) {
+                 
                     if ($produto['categoria'] == $dados_Cupom['categoria']) {
 
                         /* Se desconto for do tipo Percentual */
@@ -111,10 +112,14 @@ class CarrinhoController extends Zend_Controller_Action {
                             $valor = ($valor - $valor_desconto);
                         }
                     }
+                
+                    
                 }
 
                 $total += ($quantidade * $valor);
             }
+        
+            
             
         }
 

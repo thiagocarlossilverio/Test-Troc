@@ -29,6 +29,10 @@ class TCS_Form_FormCupom extends Zend_Form {
         $elemento->setRequired(true);
         $this->addElement($elemento);
                
+         // Desconto  .........................................................................
+        $elemento = $this->createElement('text', 'desconto', array('id' => 'desconto', 'Label' => 'Desconto', 'class' => 'form-control'));
+        $elemento->setRequired(true);
+        $this->addElement($elemento);
         
        // Tipo de Desconto .......................................................................
         $categoria = new Admin_Model_Menus();
@@ -38,12 +42,9 @@ class TCS_Form_FormCupom extends Zend_Form {
             '1'=> 'Percentual',
             '2'=> 'Valor Fixo'
             ));
-        $this->addElement($elemento);
-       
-        // Desconto  .........................................................................
-        $elemento = $this->createElement('text', 'desconto', array('id' => 'desconto', 'Label' => 'Desconto', 'class' => 'form-control'));
         $elemento->setRequired(true);
         $this->addElement($elemento);
+       
         
         // categorias .......................................................................
         $categoria = new Admin_Model_Categorias();
@@ -52,7 +53,7 @@ class TCS_Form_FormCupom extends Zend_Form {
         foreach ($categoria->ListCategory() as $row)
             if ($row['id'])
                 $elemento->addMultioptions(array($row['id'] => $row['nome']));
-
+        $elemento->setRequired(true);
         $this->addElement($elemento);
         
           // Validade  .........................................................................
@@ -71,7 +72,7 @@ class TCS_Form_FormCupom extends Zend_Form {
         
         
         
-        $this->addDisplayGroup(array('id', 'nome', 'codigo_cupom', 'tipo_desconto', 'desconto', 'categoria', 'data_validade','ativo', 'Salvar'), 'group-desconto', array('removeDecorator' => 'Label'));
+        $this->addDisplayGroup(array('id', 'nome', 'codigo_cupom', 'desconto', 'tipo_desconto', 'categoria', 'data_validade','ativo', 'Salvar'), 'group-desconto', array('removeDecorator' => 'Label'));
         $this->setDisplayGroupDecorators(array('FormElements', 'Fieldset'));
     }
    

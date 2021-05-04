@@ -3,14 +3,23 @@
 class TCS_View_Helpers_ConvercaoDate {
 
     public function ConvercaoDate($elemento, $data, $tipo) {
+
         $confere = explode(' ', $data);
+
         if (count($confere) == 2) {
             $data = $confere[0];
             $hora = $confere[1];
+        } else {
+            $hora = '';
         }
+
         $quebra = explode($elemento, $data);
-        if (count($quebra) < 3)
+
+
+        if (count($quebra) < 3) {
             return NULL;
+        }
+
         // elemento - tra�o ou barra
         // Tipo 1   =   dia/mes
         // Tipo 2   =   Dia / Mes / Ano
@@ -28,12 +37,7 @@ class TCS_View_Helpers_ConvercaoDate {
             $ano = $quebra['0'];
             $mostra = "$dia/$mes/$ano";
         }
-        if ($tipo == 4) {
-            $dia = $quebra['2'];
-            $mes = $quebra['1'];
-            $ano = $quebra['0'];
-            $mostra = "$mes/$ano";
-        }
+
         if ($tipo == 3) {
             $dia = $quebra['0'];
             $mes = $quebra['1'];
@@ -75,6 +79,49 @@ class TCS_View_Helpers_ConvercaoDate {
             $ano = substr($quebra['0'], 2);
             $mostra = "$dia/$mes - " . substr($hora, 0, 5);
         }
+
+
+        if ($tipo == 9) {
+            $dia = $quebra['2'];
+            $mes = $quebra['1'];
+            $ano = $quebra['0'];
+
+            $mostra = "$dia-$mes-$ano" . ' ' . $hora;
+        }
+
+        if ($tipo == 10) {
+            $dia = $quebra['2'];
+            $mes = $quebra['1'];
+            $ano = $quebra['0'];
+
+            $mostra = "$dia/$mes/$ano" . ' ' . $hora;
+        }
+
+        if ($tipo == 11) {
+            $dia = $quebra['2'];
+            $mes = $quebra['1'];
+            $ano = $quebra['0'];
+
+
+            $mostra = $hora;
+        }
+
+        if ($tipo == 12) {
+            $quebra2 = explode(' ', $quebra['2']);
+            $dia = $quebra2['0'];
+            $mes = $quebra['1'];
+            $ano = substr($quebra['0'], 2);
+            $mostra = substr($hora, 0, 5) . ' - ' . "$dia/$mes";
+        }
+
+        if ($tipo == 13) {
+            $dia = $quebra['2'];
+            $mes = $quebra['1'];
+            $ano = $quebra['0'];
+
+            $mostra = "$ano-$mes-$dia";
+        }
+
         if ($tipo == 'USA') {
             $quebra2 = explode(' ', $quebra['2']);
             $dia = $quebra2['0'];
