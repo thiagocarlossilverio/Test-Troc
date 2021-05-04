@@ -1,5 +1,5 @@
 <?
-//$this->headScript()->appendFile($this->BaseUrl('assets/js/Addcarrinho.js'));
+    $this->headScript()->appendFile($this->BaseUrl('assets/js/Addcarrinho.js'));
 ?>
 <div class="row list-carrinho">
 
@@ -17,7 +17,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <? foreach($this->carrinho as $produto){ ?>
+                     <? 
+                     $total = '';
+                     foreach($this->carrinho as $produto){
+                         $valor = $this->LimpaNumero($produto['valor']);
+                         $quantidade = $this->LimpaNumero($produto['quantidade']);
+                          $total += ($quantidade * $valor);
+                         ?>
                     <tr>
                         <th scope="row">1</th>
                         <td><?=$produto['nome'];?></td>
@@ -38,12 +44,14 @@
     <div class="col-md-4">
         <div class="row">
             <ul class="list-group">
-                <li class="list-group-item">Total: </li>
+                <li class="list-group-item">
+                    <h3>Total: <span id="total_desconto"><?= number_format($total, 2, ",", "."); ?></span> </h3>
+                </li>
                 <li class="list-group-item">
                    <div class="form-group mx-sm-3 mb-2">
                        <input type="text" class="form-control" id="cupom_desconto" placeholder="Insira seu Cupom desconto">
                    </div>
-                   <button type="submit" class="btn btn-primary mb-2">Aplicar Desconto</button>
+                   <button type="submit" class="btn btn-primary mb-2 aplicar_desconto">Aplicar Desconto</button>
                 </li>
                 
                 <li class="list-group-item"></li>

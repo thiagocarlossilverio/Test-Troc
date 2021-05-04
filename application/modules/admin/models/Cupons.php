@@ -16,6 +16,10 @@ class Admin_Model_Cupons extends Zend_Db_Table {
     public function insert(array $data) {
         if (!is_array($data))
             return false;
+        
+        if(!empty($data['desconto'])){
+           $data['desconto'] = $this->view->LimpaNumero($data['desconto']);
+        }
    
         if (is_numeric($data['id'])) {
             $this->update($data, "id = " . $data['id']);
