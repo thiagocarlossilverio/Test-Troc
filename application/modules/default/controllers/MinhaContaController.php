@@ -265,12 +265,6 @@ class MinhaContaController extends Zend_Controller_Action {
         $this->view->dados = $result;
     }
 
-    public function propostasAction() {
-        $login = new Zend_Session_Namespace("login");
-        $ModelPropostas = new Admin_Model_ClientePropostas();
-
-        $result = $ModelPropostas->GetpropostasCliente($login->id);
-        $this->view->propostas = $result;
-    }
+   
 
 }
