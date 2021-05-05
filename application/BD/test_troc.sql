@@ -26,10 +26,14 @@ CREATE TABLE IF NOT EXISTS `acessos` (
   `longitude` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `data_acesso` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela test_troc.acessos: 0 rows
+-- Copiando dados para a tabela test_troc.acessos: 3 rows
 /*!40000 ALTER TABLE `acessos` DISABLE KEYS */;
+INSERT INTO `acessos` (`id`, `ip`, `sistema_operacional`, `navegador`, `latitude`, `longitude`, `data_acesso`) VALUES
+	(1, '127.0.0.1', 'Linux', 'Google Chrome 90.0.4430.72', '', '', '2021-05-04 21:10:42'),
+	(2, '186.226.246.45', 'Linux', 'Google Chrome 90.0.4430.93', '', '', '2021-05-05 08:28:00'),
+	(3, '186.226.246.45', 'Linux', 'Google Chrome 90.0.4430.91', '', '', '2021-05-05 09:20:17');
 /*!40000 ALTER TABLE `acessos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela test_troc.categorias_produto
@@ -145,10 +149,13 @@ CREATE TABLE IF NOT EXISTS `logs` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `FK_logs_usuarios` FOREIGN KEY (`user`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela test_troc.logs: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` (`id`, `module`, `controller`, `action`, `parametros`, `ip`, `data`, `user`) VALUES
+	(1, 'admin', 'usuarios', 'adicionar', '{"module":"admin","controller":"usuarios","action":"adicionar","id":"","nome":"Homologa\\u00e7\\u00e3o","login":"teste","senha":"#Teste@2021!","email":"contato@thiagocarlos.com.br","celular":"","perfil":"3","MAX_FILE_SIZE":"52428800","status":"1","Salvar":"Salvar"}', '186.226.246.135', '2021-05-05 06:37:29', 1),
+	(2, 'admin', 'usuarios', 'editar', '{"module":"admin","controller":"usuarios","action":"editar","id":"1","nome":"Thiago Carlos ","login":"thiago","senha":"","email":"thiagocarlos@outlook.com.br","celular":"4384257131","perfil":"3","MAX_FILE_SIZE":"52428800","status":"1","Salvar":"Salvar"}', '186.226.246.135', '2021-05-05 06:39:12', 1);
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela test_troc.menus
@@ -165,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela test_troc.menus: ~26 rows (aproximadamente)
+-- Copiando dados para a tabela test_troc.menus: ~25 rows (aproximadamente)
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
 INSERT INTO `menus` (`id`, `pai`, `nome`, `descricao`, `icone`, `controller`, `action`, `ordem`, `status`) VALUES
 	(4, NULL, 'Usuario', 'Gerenciamento de Usuarios', 'fa fa-user', 'usuarios', '', 5, 1),
@@ -283,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `menus_perfil_permissoes` (
   KEY `perfil` (`perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=398 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela test_troc.menus_perfil_permissoes: ~127 rows (aproximadamente)
+-- Copiando dados para a tabela test_troc.menus_perfil_permissoes: ~125 rows (aproximadamente)
 /*!40000 ALTER TABLE `menus_perfil_permissoes` DISABLE KEYS */;
 INSERT INTO `menus_perfil_permissoes` (`id`, `menu`, `perfil`) VALUES
 	(265, 102, 2),
@@ -427,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `menus_visualizacao` (
   CONSTRAINT `FK_menus_visualizacao_perfil` FOREIGN KEY (`perfil`) REFERENCES `perfil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=462 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela test_troc.menus_visualizacao: ~50 rows (aproximadamente)
+-- Copiando dados para a tabela test_troc.menus_visualizacao: ~51 rows (aproximadamente)
 /*!40000 ALTER TABLE `menus_visualizacao` DISABLE KEYS */;
 INSERT INTO `menus_visualizacao` (`id`, `menu`, `perfil`) VALUES
 	(6, 14, 3),
@@ -512,11 +519,11 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   KEY `categoria` (`categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela test_troc.produtos: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela test_troc.produtos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
 INSERT INTO `produtos` (`id`, `nome`, `categoria`, `destaque`, `descricao`, `valor`, `data_cadastro`, `visualizacoes`, `ativo`) VALUES
 	(1, 'Camiseta Polo', 2, 0, '<p>Nossas camisetas Polo foram desenvolvidas para que o tecido chegue a maior maciez, mantendo a resist&ecirc;ncia. A camiseta conta com um design arrojado e urbana .Todas os mat&eacute;rias s&atilde;o brasileiras trazendo ao produto alta qualidade. Aposte no simples!</p>\r\n', 45, '2021-05-03 18:47:35', 12, 1),
-	(2, 'Tênis Feminino', 1, 0, '<p>T&ecirc;nis Academia Feminino- Run</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>ESPECIFICA&Ccedil;&Otilde;ES<br />\r\n- Cabedal: Nylon<br />\r\n- Palmilha: EVA<br />\r\n- Peso: 210 gramas (ref. 35) variando de acordo com a numera&ccedil;&atilde;o.<br />\r\n- Fotos reais do produto.<br />\r\n- Forma normal. Caso esteja em d&uacute;vida, me&ccedil;a a palmilha de um t&ecirc;nis que voc&ecirc; j&aacute; possui em compare com a tabela abaixo para definir sua numera&ccedil;&atilde;o.<br />\r\n<br />\r\nTABELA DE TAMANHOS<br />\r\nNo 34 - Palmilha 23 cm<br />\r\nNo 35 - Palmilha 23,7 cm<br />\r\nNo 36 - Palmilha 24,3cm<br />\r\nNo 37 - Palmilha 25,0 cm<br />\r\nNo 38 - Palmilha 25,7 cm<br />\r\nNo 39 - Palmilha 26,3 cm</p>\r\n', 150, '2021-05-03 19:54:15', 12, 1);
+	(2, 'Tênis Feminino', 1, 0, '<p>T&ecirc;nis Academia Feminino- Run</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>ESPECIFICA&Ccedil;&Otilde;ES<br />\r\n- Cabedal: Nylon<br />\r\n- Palmilha: EVA<br />\r\n- Peso: 210 gramas (ref. 35) variando de acordo com a numera&ccedil;&atilde;o.<br />\r\n- Fotos reais do produto.<br />\r\n- Forma normal. Caso esteja em d&uacute;vida, me&ccedil;a a palmilha de um t&ecirc;nis que voc&ecirc; j&aacute; possui em compare com a tabela abaixo para definir sua numera&ccedil;&atilde;o.<br />\r\n<br />\r\nTABELA DE TAMANHOS<br />\r\nNo 34 - Palmilha 23 cm<br />\r\nNo 35 - Palmilha 23,7 cm<br />\r\nNo 36 - Palmilha 24,3cm<br />\r\nNo 37 - Palmilha 25,0 cm<br />\r\nNo 38 - Palmilha 25,7 cm<br />\r\nNo 39 - Palmilha 26,3 cm</p>\r\n', 150, '2021-05-03 19:54:15', 13, 1);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela test_troc.produto_imagens
@@ -562,12 +569,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   KEY `fk_usuarios_permisoes` (`perfil`),
   CONSTRAINT `FK_usuarios_perfil` FOREIGN KEY (`perfil`) REFERENCES `perfil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela test_troc.usuarios: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `login`, `nome`, `senha`, `chave`, `perfil`, `email`, `celular`, `imagem`, `ultimo_acesso`, `sessao`, `ip`, `status`) VALUES
-	(1, 'thiago', 'Thiago Carlos ', '87927616bfab8d7a63927d941418cdd7', '', 3, 'thiago@schoeler.com.br', '4384257131', '3a355z4d79.jpg', '2021-05-04 17:16:46', '1ea344cf41de8c24d060201c0bf3e67f', '186.226.246.135', 1);
+	(1, 'thiago', 'Thiago Carlos ', '87927616bfab8d7a63927d941418cdd7', '', 3, 'thiagocarlos@outlook.com.br', '4384257131', '3a355z4d79.jpg', '2021-05-05 05:27:22', '7ae8a2d5bb93f0f5b22b682e4d43c103', '186.226.246.45', 1),
+	(2, 'teste', 'Homologação', '435971a381d8263201b4d5e3ed38152a', '0', 3, 'contato@thiagocarlos.com.br', '', NULL, NULL, NULL, NULL, 1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
